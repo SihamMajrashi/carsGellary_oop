@@ -1,0 +1,55 @@
+class Car:
+    def __init__(self,title,year, doors, seats):
+        self.title = title
+        self.year = year
+        self.doors = doors
+        self.seats = seats
+
+    def __str__(self):
+        return f"{self.title} {self.year}, {self.doors} and {self.seats}"
+class carsGallery:
+    def __init__(self):
+        self.Cars = []
+    def add_car(self, Car):
+        self.Cars.append(Car)
+        print(f"Car '{Car.title}' added to the Gallery.")
+
+    def remove_car(self, title):
+        for Car in self.Cars:
+            if Car.title == title:
+                self.Cars.remove(Car)
+                print(f" Car '{Car.title}' removed from the Gallery.")
+                return
+        print("Car not found.")
+
+    def find_car(self, title):
+        for Car in self.Cars:
+            if Car.title == title:
+                return Car
+        return None
+
+    def display_cars(self):
+        if not self.Cars:
+            print("No Cars in the library.")
+        else:
+            for Car in self.Cars:
+                print(Car)
+
+# Example usage
+if __name__ == "__main__":
+    carsGallery = carsGallery()
+
+    Car1 = Car("Audi", 2026 , "Two doors", "Leather seats")
+    Car2 = Car("BMW", 2025 , "Four doors", "Vinyl seats")
+
+    carsGallery.add_car(Car1)
+    carsGallery.add_car(Car2)
+
+    carsGallery.display_cars()
+
+    found_Car = carsGallery.find_car("BMW")
+    if found_Car:
+        print(f"Found Car: {found_Car}")
+
+    carsGallery.remove_car("Audi")
+    carsGallery.display_cars()
